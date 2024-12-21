@@ -12,6 +12,10 @@ BOT_NAME = "nba_stats_collection"
 SPIDER_MODULES = ["nba_stats_collection.spiders"]
 NEWSPIDER_MODULE = "nba_stats_collection.spiders"
 
+FEEDS = {
+   '../data/books_data.json': {'format': 'json'}
+}
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "nba_stats_collection (+http://www.yourdomain.com)"
@@ -62,9 +66,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "nba_stats_collection.pipelines.NbaStatsCollectionPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "nba_stats_collection.pipelines.NbaStatsCollectionPipeline": 300,
+   "nba_stats_collection.pipelines.BookScraperPipeline": 300
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
